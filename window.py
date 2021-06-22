@@ -115,7 +115,7 @@ entry0.place(
 entry0.bind("<1>", select_path)
 
 canvas.create_text(
-    105.0, 410.0,
+    150.0, 410.0,
     text = "Choose File Path",
     fill = "#ffffff",
     font = ("RobotoCondensed-Regular", int(24.0)))
