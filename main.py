@@ -38,6 +38,8 @@ class Handler(FileSystemEventHandler):
                 os.rename(source, new)
 
 
+path_file = open('path.txt', 'r')
+paths = path_file.readline()
 tracker = '/Users/sahaj/Desktop/SC1'
 destination = '/Users/sahaj/Desktop/SC2'
 # if current_hour == 3:
