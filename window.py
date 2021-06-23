@@ -7,12 +7,6 @@ from tkinter import filedialog, messagebox
 # os.chdir(path)
 
 
-global output_path, text, hour, minute
-text = tk.StringVar()
-hour = tk.IntVar()
-minute = tk.IntVar()
-
-
 def select_path(event):
     global output_path
 
@@ -23,6 +17,9 @@ def select_path(event):
 
 def btn_clicked():
     Value = entry0.get()
+    file = open('path.txt', 'a')
+    file.seek(0)
+    file.write(str(Value) + '\n')
     print(Value)
 
 
@@ -63,37 +60,53 @@ def minute_decrement():
 
 
 def time_am():
+    file = open('time.txt', 'a')
+    file.seek(0)
     print_hour = entry1.get()
     print_minute = entry2.get()
     if int(print_hour) == 0 and int(print_minute) == 0:
         print_time = "00:00 AM"
         messagebox.showinfo('Time', str(print_time))
         print(print_time)
-    elif int(print_hour) < 10:
-        print_time = "0" + str(print_hour) + ":" + str(print_minute) + " AM"
+        file.write(str(print_hour) + ":" + str(print_minute) + "AM" + "\n")
+        file.close()
+    elif int(print_hour) < 10 and int(print_minute) < 10:
+        print_time = "0" + str(print_hour) + ":0" + str(print_minute) + " AM"
         messagebox.showinfo('Time', str(print_time))
         print(print_time)
+        file.write(str(print_hour) + ":" + str(print_minute) + "AM" + "\n")
+        file.close()
     else:
         print_time = str(print_hour) + ":" + str(print_minute) + " AM"
         messagebox.showinfo('Time', str(print_time))
         print(print_time)
+        file.write(str(print_hour) + ":" + str(print_minute) + "AM" + "\n")
+        file.close()
 
 
 def time_pm():
-    print_hour = entry1.get()
+    file = open('time.txt', 'a')
+    file.seek(0)
+    print_hour = int(entry1.get())
     print_minute = entry2.get()
     if int(print_hour) == 0 and int(print_minute) == 0:
         print_time = "00:00 PM"
         messagebox.showinfo('Time', str(print_time))
         print(print_time)
-    elif int(print_hour) < 10:
-        print_time = "0" + str(print_hour) + ":" + str(print_minute) + " PM"
+        file.write(str(print_hour) + ":" + str(print_minute) + "PM" + "\n")
+        file.close()
+    elif int(print_hour) < 10 and int(print_minute) < 10:
+        print_time = "0" + str(print_hour) + ":0" + str(print_minute) + " PM"
         messagebox.showinfo('Time', str(print_time))
         print(print_time)
+        file.write(str(print_hour) + ":" + str(print_minute) + "PM" + "\n")
+        file.close()
     else:
         print_time = str(print_hour) + ":" + str(print_minute) + " PM"
         messagebox.showinfo('Time', str(print_time))
         print(print_time)
+        file.write(str(print_hour) + ":" + str(print_minute) + "PM" + "\n")
+        file.close()
 
 
 def clear_func():
@@ -101,6 +114,12 @@ def clear_func():
 
 
 window = Tk()
+
+global output_path, text, hour, minute
+text = tk.StringVar()
+hour = tk.IntVar()
+minute = tk.IntVar()
+
 window.geometry("1440x1024")
 window.configure(bg="#009bff")
 canvas = Canvas(
