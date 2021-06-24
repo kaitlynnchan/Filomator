@@ -39,8 +39,10 @@ class Handler(FileSystemEventHandler):
 
 
 path_file = open('path.txt', 'r')
-paths = path_file.readline()
+tracker_paths = path_file.readline()
 tracker = '/Users/sahaj/Desktop/SC1'
+path_file = open('path_destination.txt', 'r')
+destination_paths = path_file.readline()
 destination = '/Users/sahaj/Desktop/SC2'
 # if current_hour == 3:
 #     destination = '/Users/sahaj/Desktop/SC2'
