@@ -16,7 +16,7 @@ def select_path_destination(event):
 
     output_path2 = filedialog.askdirectory()
     entry3.delete(0, END)
-    entry3.insert(0, output_path)
+    entry3.insert(0, output_path2)
 
 
 def btn_clicked():
@@ -27,7 +27,7 @@ def btn_clicked():
     print(Value)
 
 
-def btn_clicked():
+def btn_clicked2():
     Value = entry3.get()
     file = open('path_destination.txt', 'a')
     file.seek(0)
@@ -379,7 +379,7 @@ b8 = Button(
     image=img8,
     borderwidth=0,
     highlightthickness=0,
-    command=btn_clicked,
+    command=btn_clicked2,
     relief="flat")
 
 b8.place(
