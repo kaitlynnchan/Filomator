@@ -147,13 +147,14 @@ def time_clear():
 
 window = Tk()
 
-global output_path, output_path2, text, text2, hour, minute, time_set_am, time_set_pm
+global output_path, output_path2, text, text2, hour, minute, time_set_am, time_set_pm, text_name
 text = tk.StringVar()
 text2 = tk.StringVar()
 hour = tk.IntVar()
 minute = tk.IntVar()
 time_set_am = tk.BooleanVar()
 time_set_pm = tk.BooleanVar()
+text_name = tk.StringVar()
 
 window.geometry("1440x1024")
 window.configure(bg="#009bff")
@@ -214,6 +215,7 @@ canvas.create_text(
     fill="#000000",
     font=("RobotoCondensed-Regular", int(24.0)))
 
+# source select button
 img0 = PhotoImage(file=f"img0.png")
 b0 = Button(
     image=img0,
@@ -227,6 +229,7 @@ b0.place(
     width=160,
     height=30)
 
+# source clear button
 img1 = PhotoImage(file=f"img1.png")
 b1 = Button(
     image=img1,
@@ -240,6 +243,7 @@ b1.place(
     width=160,
     height=30)
 
+# hour up button
 img2 = PhotoImage(file=f"img2.png")
 b2 = Button(
     image=img2,
@@ -253,6 +257,7 @@ b2.place(
     width=74,
     height=18)
 
+# hour down button
 img3 = PhotoImage(file=f"img3.png")
 b3 = Button(
     image=img3,
@@ -266,6 +271,7 @@ b3.place(
     width=74,
     height=18)
 
+# min up button
 img4 = PhotoImage(file=f"img4.png")
 b4 = Button(
     image=img4,
@@ -279,6 +285,7 @@ b4.place(
     width=74,
     height=18)
 
+# min down button
 img5 = PhotoImage(file=f"img5.png")
 b5 = Button(
     image=img5,
@@ -292,6 +299,7 @@ b5.place(
     width=74,
     height=18)
 
+# am button
 img6 = PhotoImage(file=f"img6.png")
 b6 = Button(
     image=img6,
@@ -305,6 +313,7 @@ b6.place(
     width=74,
     height=18)
 
+# pm button
 img7 = PhotoImage(file=f"img7.png")
 b7 = Button(
     image=img7,
@@ -318,6 +327,7 @@ b7.place(
     width=74,
     height=18)
 
+# source entry
 entry0_img = PhotoImage(file=f"img_textBox0.png")
 entry0_bg = canvas.create_image(
     371.0, 394.5,
@@ -336,6 +346,7 @@ entry0.place(
 
 entry0.bind("<1>", select_path)
 
+# hour entry
 entry1_img = PhotoImage(file=f"img_textBox1.png")
 entry1_bg = canvas.create_image(
     96.0, 600.5,
@@ -352,6 +363,7 @@ entry1.place(
     width=70.0,
     height=37)
 
+# min entry box
 entry2_img = PhotoImage(file=f"img_textBox2.png")
 entry2_bg = canvas.create_image(
     278.0, 600.5,
@@ -368,12 +380,14 @@ entry2.place(
     width=70.0,
     height=37)
 
+# source input path text
 canvas.create_text(
     107.0, 395.0,
     text="Input Path",
     fill="#ffffff",
     font=("RobotoCondensed-Regular", int(24.0)))
 
+# storage select button
 img8 = PhotoImage(file=f"img8.png")
 b8 = Button(
     image=img8,
@@ -387,6 +401,7 @@ b8.place(
     width=160,
     height=30)
 
+# storage clear button
 img9 = PhotoImage(file=f"img9.png")
 b9 = Button(
     image=img9,
@@ -400,6 +415,7 @@ b9.place(
     width=160,
     height=30)
 
+# time select button
 img10 = PhotoImage(file=f"img10.png")
 b10 = Button(
     image=img10,
@@ -413,6 +429,7 @@ b10.place(
     width=160,
     height=30)
 
+# time clear button
 img11 = PhotoImage(file=f"img11.png")
 b11 = Button(
     image=img11,
@@ -426,6 +443,7 @@ b11.place(
     width=160,
     height=30)
 
+# storage entry
 entry3_img = PhotoImage(file=f"img_textBox3.png")
 entry3_bg = canvas.create_image(
     371.0, 498.5,
@@ -444,11 +462,91 @@ entry3.place(
 
 entry3.bind("<1>", select_path_destination)
 
+# storage input path text
 canvas.create_text(
     107.0, 499.0,
     text="Input Path",
     fill="#ffffff",
     font=("RobotoCondensed-Regular", int(24.0)))
+
+
+# Name
+entry_name_img = PhotoImage(file=f"img_textBox4.png")
+entry_name_bg = canvas.create_image(
+    371.0, 394.5,
+    image=entry_name_img)
+
+entry_name = Entry(
+    bd=0,
+    bg="#425b6b",
+    highlightthickness=0,
+    textvariable=text_name)
+
+entry_name.place(
+    x=243, y=650,
+    width=443,
+    height=37)
+
+#entry_name.bind("<1>", select_name)
+
+select_name_img = PhotoImage(file=f"img0.png")
+select_name_btn = Button(
+    image=select_name_img,
+    borderwidth=0,
+    highlightthickness=0,
+    command=btn_clicked,
+    relief="flat")
+
+select_name_btn.place(
+    x=714, y=650,
+    width=160,
+    height=30)
+
+canvas.create_text(
+    130.0, 670.0,
+    text="Input Name",
+    fill="#000000",
+    font=("RobotoCondensed-Regular", int(24.0)))
+
+# File type and name
+entry_desired_files_img = PhotoImage(file=f"img_textBox4.png")
+entry_desired_files_bg = canvas.create_image(
+    431.0, 394.5,
+    image=entry_desired_files_img)
+
+entry_desired_files = Entry(
+    bd=0,
+    bg="#425b6b",
+    highlightthickness=0,
+    textvariable=text_name)
+
+entry_desired_files.place(
+    x=353, y=700,
+    width=443,
+    height=37)
+
+#entry_desired_files.bind("<1>", select_desired_files)
+
+select_desired_files_img = PhotoImage(file=f"img0.png")
+select_desired_files_btn = Button(
+    image=select_desired_files_img,
+    borderwidth=0,
+    highlightthickness=0,
+    command=btn_clicked,
+    relief="flat")
+
+select_desired_files_btn.place(
+    x=824, y=700,
+    width=160,
+    height=30)
+
+canvas.create_text(
+    160.0, 720.0,
+    text="File Types and Names",
+    fill="#000000",
+    font=("RobotoCondensed-Regular", int(24.0)))
+
+# days of week
 
 # window.resizable(False, False)
 window.mainloop()
