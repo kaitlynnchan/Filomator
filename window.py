@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import filedialog, messagebox
-
+from data_storage import *
 
 def select_path(event):
     global output_path
@@ -144,10 +144,17 @@ def time_clear():
     hour.set("")
     minute.set("")
 
+def create_task():
+    print(entry_name.get())
+    # name, hour, min, days_of_week, source_folder, dest_folder, desired_files
+    hour = entry1.get()
+    if time_set_pm:
+        hour = int(hour) + 12
+    write_data(entry_name.get(), str(hour), entry2.get(), None, entry0.get(), entry3.get(), None)
 
 window = Tk()
 
-global output_path, output_path2, text, text2, hour, minute, time_set_am, time_set_pm, text_name
+global output_path, output_path2, text, text2, hour, minute, time_set_am, time_set_pm, text_name, text_desired_files
 text = tk.StringVar()
 text2 = tk.StringVar()
 hour = tk.IntVar()
@@ -155,6 +162,7 @@ minute = tk.IntVar()
 time_set_am = tk.BooleanVar()
 time_set_pm = tk.BooleanVar()
 text_name = tk.StringVar()
+text_desired_files = tk.StringVar()
 
 window.geometry("1440x1024")
 window.configure(bg="#009bff")
@@ -489,18 +497,18 @@ entry_name.place(
 
 #entry_name.bind("<1>", select_name)
 
-select_name_img = PhotoImage(file=f"img0.png")
-select_name_btn = Button(
-    image=select_name_img,
-    borderwidth=0,
-    highlightthickness=0,
-    command=btn_clicked,
-    relief="flat")
+# select_name_img = PhotoImage(file=f"img0.png")
+# select_name_btn = Button(
+#     image=select_name_img,
+#     borderwidth=0,
+#     highlightthickness=0,
+#     command=select_name,
+#     relief="flat")
 
-select_name_btn.place(
-    x=714, y=650,
-    width=160,
-    height=30)
+# select_name_btn.place(
+#     x=714, y=650,
+#     width=160,
+#     height=30)
 
 canvas.create_text(
     130.0, 670.0,
@@ -518,7 +526,7 @@ entry_desired_files = Entry(
     bd=0,
     bg="#425b6b",
     highlightthickness=0,
-    textvariable=text_name)
+    textvariable=text_desired_files)
 
 entry_desired_files.place(
     x=353, y=700,
@@ -527,18 +535,18 @@ entry_desired_files.place(
 
 #entry_desired_files.bind("<1>", select_desired_files)
 
-select_desired_files_img = PhotoImage(file=f"img0.png")
-select_desired_files_btn = Button(
-    image=select_desired_files_img,
-    borderwidth=0,
-    highlightthickness=0,
-    command=btn_clicked,
-    relief="flat")
+# select_desired_files_img = PhotoImage(file=f"img0.png")
+# select_desired_files_btn = Button(
+#     image=select_desired_files_img,
+#     borderwidth=0,
+#     highlightthickness=0,
+#     command=btn_clicked,
+#     relief="flat")
 
-select_desired_files_btn.place(
-    x=824, y=700,
-    width=160,
-    height=30)
+# select_desired_files_btn.place(
+#     x=824, y=700,
+#     width=160,
+#     height=30)
 
 canvas.create_text(
     160.0, 720.0,
@@ -546,7 +554,19 @@ canvas.create_text(
     fill="#000000",
     font=("RobotoCondensed-Regular", int(24.0)))
 
-# days of week
+# new task button
+new_task_img = PhotoImage(file=f"new_task.png")
+new_task_btn = Button(
+    image=new_task_img,
+    borderwidth=0,
+    highlightthickness=0,
+    command=create_task,
+    relief="flat")
+
+new_task_btn.place(
+    x=1280, y=720,
+    width=160,
+    height=59)
 
 # window.resizable(False, False)
 window.mainloop()
