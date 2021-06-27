@@ -148,12 +148,9 @@ def create_task():
     print(entry_name.get())
 
     hour = entry1.get()
-    if time_set_pm:
-        # convert time to 24 hour clock
-        hour = int(hour) + 12
-        hour = str(hour)
-
+    hour = convert_to_24_hr_clock(hour, time_set_pm)
     write_to_json(entry_name.get(), hour, entry2.get(), None, entry0.get(), entry3.get(), None)
+    extract_data_fr_json()
 
 window = Tk()
 
