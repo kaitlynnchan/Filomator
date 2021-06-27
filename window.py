@@ -146,11 +146,14 @@ def time_clear():
 
 def create_task():
     print(entry_name.get())
-    # name, hour, min, days_of_week, source_folder, dest_folder, desired_files
+
     hour = entry1.get()
     if time_set_pm:
+        # convert time to 24 hour clock
         hour = int(hour) + 12
-    write_data(entry_name.get(), str(hour), entry2.get(), None, entry0.get(), entry3.get(), None)
+        hour = str(hour)
+
+    write_to_json(entry_name.get(), hour, entry2.get(), None, entry0.get(), entry3.get(), None)
 
 window = Tk()
 
