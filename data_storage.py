@@ -16,9 +16,12 @@ from json.decoder import JSONDecodeError
 #     }
 
 global json_file
-json_file = "data.txt"
+json_file = "data.json"
 
 def convert_to_24_hr_clock(hour, is_time_pm):
+    if (not hour) or (hour is None) or (is_time_pm is None) or (not is_time_pm):
+        print("Parameters are not valid")
+
     hour = int(hour)
     if is_time_pm and 0 < hour <= 12:
         # convert time to 24 hour clock
@@ -26,6 +29,14 @@ def convert_to_24_hr_clock(hour, is_time_pm):
     return str(hour)
 
 def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desired_files):
+    if (not name) or (name is None) \
+            or (not hour) or (hour is None) or (int(hour) == 0) or (not mins) or (name is mins)\
+            or (not days_of_week) or (days_of_week is None)\
+            or (not source_path) or (source_path is None) or (not dest_path) or (dest_path is None)\
+            or (not desired_files) or (desired_files is None):
+        print("All fields must be filled")
+        return
+
     data_dict = { 
         name: {
             "time": {
@@ -72,6 +83,7 @@ def extract_data_fr_json():
 
 def extract_entry(name):
     if name is None:
+        print("Entry cannot be null")
         return None
 
     try:
