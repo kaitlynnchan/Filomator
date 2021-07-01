@@ -149,7 +149,7 @@ def create_task():
 
     hour = entry1.get()
     hour = convert_to_24_hr_clock(hour, time_set_pm)
-    write_to_json(entry_name.get(), hour, entry2.get(), None, entry0.get(), entry3.get(), None)
+    write_to_json(entry_name.get(), hour, entry2.get(), None, entry0.get(), entry3.get(), None, None)
     extract_data_fr_json()
 
 window = Tk()

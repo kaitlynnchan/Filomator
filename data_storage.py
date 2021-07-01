@@ -18,6 +18,7 @@ from json.decoder import JSONDecodeError
 global json_file
 json_file = "data.json"
 
+
 def convert_to_24_hr_clock(hour, is_time_pm):
     if (not hour) or (hour is None) or (is_time_pm is None) or (not is_time_pm):
         print("Parameters are not valid")
@@ -28,16 +29,18 @@ def convert_to_24_hr_clock(hour, is_time_pm):
         hour += 12
     return str(hour)
 
-def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desired_files):
+
+def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desired_files, new_file_name):
     if (not name) or (name is None) \
-            or (not hour) or (hour is None) or (int(hour) == 0) or (not mins) or (name is mins)\
-            or (not days_of_week) or (days_of_week is None)\
-            or (not source_path) or (source_path is None) or (not dest_path) or (dest_path is None)\
-            or (not desired_files) or (desired_files is None):
+            or (not hour) or (hour is None) or (int(hour) == 0) or (not mins) or (name is mins) \
+            or (not days_of_week) or (days_of_week is None) \
+            or (not source_path) or (source_path is None) or (not dest_path) or (dest_path is None) \
+            or (not desired_files) or (desired_files is None)\
+            or (not new_file_name) or (new_file_name is None):
         print("All fields must be filled")
         return
 
-    data_dict = { 
+    data_dict = {
         name: {
             "time": {
                 "hours": hour,
@@ -46,7 +49,8 @@ def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desire
             "daysOfWeek": [],
             "sourcePath": source_path,
             "destPath": dest_path,
-            "desiredFiles": []
+            "desiredFiles": [],
+            "newFileName": new_file_name,
         }
     }
     data_dict[name]["daysOfWeek"] = days_of_week
@@ -64,22 +68,24 @@ def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desire
 
     with open(json_file, 'w') as file:
         # write new json object to file in nice format
-        json.dump(json_object, file, indent = 4)
+        json.dump(json_object, file, indent=4)
 
-    print(json.dumps(json_object, indent = 4))
+    print(json.dumps(json_object, indent=4))
+
 
 def extract_data_fr_json():
     try:
         with open(json_file) as file:
             # load file
             json_object = json.load(file)
-            print(json.dumps(json_object, indent = 4))
+            print(json.dumps(json_object, indent=4))
             return json_object
     except (IOError, JSONDecodeError):
         # file is empty or does not exists
         # first entry
         print("File is not accessible")
         return None
+
 
 def extract_entry(name):
     if name is None:
@@ -95,7 +101,7 @@ def extract_entry(name):
             if name in json_object:
                 # get entry at name
                 entry = json_object[name]
-                print(json.dumps(entry, indent = 4))
+                print(json.dumps(entry, indent=4))
                 return entry
             else:
                 print("Entry '" + name + "' was not found")
