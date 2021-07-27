@@ -68,29 +68,29 @@ ipcMain.on("toMain", (event, args) => {
 
 ipcMain.handle("toMain", async (event, args) => {
     return new Promise(resolve => {
-            var python = require('child_process').spawn('python', [`./python/${args[0]}`, args.slice(1)]);
-            let result = [];
-        
-            // For receiving data (receives as a readable stream) 
-            // - can be decoded into a string.
-            python.stdout.on('data', function (data) {
-                console.log("Python response: ", data);
-                result.push(Buffer.from(data));
-            });
-            python.stdout.on('end', function() {
-                console.log("Returning buffer");
-                resolve(Buffer.concat(result));
-            })
-        
-            // Error handling
-            python.stderr.on('data', (data) => {
-                console.error(result);
-                return data;
-            });
-        
-            python.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-            })
+        var python = require('child_process').spawn('python', [`./python/${args[0]}`, args.slice(1)]);
+        let result = [];
+    
+        // For receiving data (receives as a readable stream) 
+        // - can be decoded into a string.
+        python.stdout.on('data', function (data) {
+            console.log("Python response: ", data);
+            result.push(Buffer.from(data));
+        });
+        python.stdout.on('end', function() {
+            console.log("Returning buffer");
+            resolve(Buffer.concat(result));
+        })
+    
+        // Error handling
+        python.stderr.on('data', (data) => {
+            console.error(result);
+            return data;
+        });
+    
+        python.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+        })
     })
 })
 

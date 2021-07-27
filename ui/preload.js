@@ -2,8 +2,6 @@
 
 const { BADHINTS } = require('dns');
 
-
-
 window.addEventListener('DOMContentLoaded', ()=> {
     // Creating anonymous function to replaceText
     const replaceText = (selector, text) => {
