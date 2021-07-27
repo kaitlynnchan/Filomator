@@ -1,9 +1,10 @@
 
+const windowApi = window.api;
 
 button.addEventListener('click', async ()=> {
-    let data = ["calc.py", input.value];
+    let data = windowApi.packageData("calc.py", input.value);
     // window.api.send("toMain", data);
-    await window.api.invoke("toMain", data).then(receivedData => {
+    await windowApi.invoke("toMain", data).then(receivedData => {
         result.textContent = receivedData;
     });
 });

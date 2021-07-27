@@ -45,6 +45,10 @@ contextBridge.exposeInMainWorld(
                 console.log("Result of decode = " + result);
                 return result;
             });
+        },
+        // Package input
+        packageData: (pythonScript, ...args) => {
+            return [pythonScript, ...args]
         }
     }
 )
