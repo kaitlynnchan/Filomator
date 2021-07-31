@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
     // day selected
@@ -8,4 +7,3 @@ $(document).ready(function(){
     });
 
 });
-

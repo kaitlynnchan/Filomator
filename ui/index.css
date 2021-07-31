@@ -41,4 +41,5 @@ body {
 .week .day.selected{
     background-color: #E6B66F;
     color: #FFFFFF;
+    box-shadow: none !important;
 }
