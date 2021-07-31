@@ -13,8 +13,8 @@
 
 // returns array of selected days in text
 function getDaysOfWeek() {
-    var week = document.getElementsByClassName("week");
-    var selectedDays = week[0].getElementsByClassName("selected");
+    var week = document.querySelector(".week");
+    var selectedDays = week.getElementsByClassName("selected");
     var selectedDaysArr = Array.from(selectedDays).map((day) => day.innerText);
     console.log(selectedDaysArr);
     return selectedDaysArr;
@@ -24,7 +24,7 @@ window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
 
     // adding new task
-    var newTask = document.querySelector("newTask");
+    var newTask = document.querySelector(".newTask");
     newTask.addEventListener('click', async ()=> {
        var daysOfWeekArray = getDaysOfWeek();
     });
