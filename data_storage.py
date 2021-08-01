@@ -8,10 +8,11 @@ from json.decoder import JSONDecodeError
 #                 "hour":"",
 #                 "min":""
 #             }, (24 hr format)
-#             "days_of_week":[],
-#             "source_path":"",
-#             "dest_path":"",
-#             "desired_files":[]
+#             "daysOfWeek":[], monday = 0, sunday = 6
+#             "sourcePath":"",
+#             "destPath":"",
+#             "desiredFiles":[],
+#             "newFileName": ""
 #         }
 #     }
 
@@ -50,7 +51,7 @@ def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desire
             "sourcePath": source_path,
             "destPath": dest_path,
             "desiredFiles": [],
-            "newFileName": new_file_name,
+            "newFileName": new_file_name
         }
     }
     data_dict[name]["daysOfWeek"] = days_of_week
@@ -78,7 +79,8 @@ def extract_data_fr_json():
         with open(json_file) as file:
             # load file
             json_object = json.load(file)
-            print(json.dumps(json_object, indent=4))
+            # print(json.dumps(json_object, indent=4))
+            print("extracted data")
             return json_object
     except (IOError, JSONDecodeError):
         # file is empty or does not exists
@@ -106,6 +108,28 @@ def extract_entry(name):
             else:
                 print("Entry '" + name + "' was not found")
                 return None
+    except (IOError, JSONDecodeError):
+        # file is empty or does not exists
+        print("File is not accessible")
+        return None
+
+
+def extract_entry_by_key(key_name):
+    if key_name is None:
+        print("Argument cannot be null")
+        return None
+
+    try:
+        with open(json_file) as file:
+            # load file
+            json_object = json.load(file)
+
+            key_values = []
+            for name in json_object:
+                key_values.append(json_object[name][key_name])
+
+            print(key_values)
+            return key_values
     except (IOError, JSONDecodeError):
         # file is empty or does not exists
         print("File is not accessible")
