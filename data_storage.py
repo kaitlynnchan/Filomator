@@ -114,7 +114,7 @@ def extract_entry(name):
         return None
 
 
-def extract_entry_by_key(key_name):
+def extract_entries_by_key(key_name):
     if key_name is None:
         print("Argument cannot be null")
         return None
@@ -124,12 +124,37 @@ def extract_entry_by_key(key_name):
             # load file
             json_object = json.load(file)
 
+            # get all values in key for each element
             key_values = []
             for name in json_object:
                 key_values.append(json_object[name][key_name])
 
             print(key_values)
             return key_values
+    except (IOError, JSONDecodeError):
+        # file is empty or does not exists
+        print("File is not accessible")
+        return None
+
+
+def get_entry_by_key(name, key):
+    if (key is None) or (name is None):
+        print("Argument cannot be null")
+        return None
+
+    try:
+        with open(json_file) as file:
+            # load file
+            json_object = json.load(file)
+
+            if name in json_object:
+                # get key for name
+                if (key == "hours") or (key == "mins"):
+                    return json_object[name]["time"][key]
+                return json_object[name][key]
+            else:
+                print("Entry '" + name + "' was not found")
+                return None
     except (IOError, JSONDecodeError):
         # file is empty or does not exists
         print("File is not accessible")

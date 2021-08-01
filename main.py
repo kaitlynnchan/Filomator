@@ -25,22 +25,23 @@ class Handler(FileSystemEventHandler):
     def on_modified(self, event):
         data = extract_data_fr_json()
         for name in data:
-            src_path = data[name]["sourcePath"]
-            hours = data[name]["time"]["hours"]
-            mins = data[name]["time"]["mins"]
-            days_of_week = data[name]["daysOfWeek"]
+            src_path = get_entry_by_key(name, "sourcePath")
+            hours = get_entry_by_key(name, "hours")
+            mins = get_entry_by_key(name, "mins")
+            days_of_week = get_entry_by_key(name, "daysOfWeek")
 
+            # check if date matches
             now = datetime.datetime.now()
-            # and (now.minute >= mins)  and (date.today().weekday() in days_of_week)
             if (now.hour == int(hours)) and (now.minute >= int(mins)) \
                     and (date.today().weekday() in days_of_week):
-                self.find_files(data, name, now, src_path)
+                self.find_files(name, now, src_path)
 
-    def find_files(self, data, name, now, src_path):
-        dest_path = data[name]["destPath"]
-        desired_files = data[name]["desiredFiles"]
-        new_file_name = data[name]["newFileName"]
+    def find_files(self, name, now, src_path):
+        dest_path = get_entry_by_key(name, "destPath")
+        desired_files = get_entry_by_key(name, "desiredFiles")
+        new_file_name = get_entry_by_key(name, "newFileName")
 
+        # look through all files at source path
         for file in os.listdir(src_path):
             source = src_path + '/' + file
             file_name = os.path.splitext(source)[0]
@@ -77,7 +78,8 @@ class Handler(FileSystemEventHandler):
 event_handler = Handler()
 observer = Observer()
 
-source_paths = extract_entry_by_key("sourcePath")
+# initialize observer for each path
+source_paths = extract_entries_by_key("sourcePath")
 for path in source_paths:
     print(path)
     observer.schedule(event_handler, path=path, recursive=True)
