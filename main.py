@@ -23,8 +23,8 @@ software_types = ('.exe', '.pkg', '.dmg')
 #   time, days_of_week, source_path, desired_files
 class Handler(FileSystemEventHandler):
     def on_modified(self, event):
-        data = extract_data_fr_json()
-        for name in data:
+        names = get_all_names()
+        for name in names:
             src_path = get_entry_by_key(name, "sourcePath")
             hours = get_entry_by_key(name, "hours")
             mins = get_entry_by_key(name, "mins")
@@ -80,6 +80,7 @@ observer = Observer()
 
 # initialize observer for each path
 source_paths = extract_entries_by_key("sourcePath")
+source_paths = list(set(source_paths))
 for path in source_paths:
     print(path)
     observer.schedule(event_handler, path=path, recursive=True)
