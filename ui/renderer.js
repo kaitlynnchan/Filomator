@@ -11,11 +11,22 @@
 //
 //button.dispatchEvent(new Event('click'));
 
-// returns array of selected days in text
+/**
+ * returns array of selected days in text
+ * monday = 0, ..., sunday = 6
+ */
 function getDaysOfWeek() {
     var week = document.querySelector(".week");
-    var selectedDays = week.getElementsByClassName("selected");
-    var selectedDaysArr = Array.from(selectedDays).map((day) => day.innerText);
+    var days = week.getElementsByClassName("day");
+
+    const selectedDaysArr = [];
+
+    // find selected days
+    for(let i = 0; i < days.length; i++){
+        if(days[i].classList.contains("selected")){
+            selectedDaysArr.push(i);
+        }
+    }
     console.log(selectedDaysArr);
     return selectedDaysArr;
 }
