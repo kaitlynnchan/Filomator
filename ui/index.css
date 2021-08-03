@@ -1,0 +1,46 @@
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #524765;
+    padding: 10px 20px;
+}
+
+/** title */
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.container {
+    padding: 10px 20px;
+}
+
+/** Week Style */
+.container .week{
+    display: flex;
+}
+
+.week .day{
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    font-size: 20px;
+}
+
+.week .day.selected{
+    background-color: #E6B66F;
+    color: #FFFFFF;
+    box-shadow: none !important;
+}
