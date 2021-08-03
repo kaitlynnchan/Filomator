@@ -1,0 +1,19 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.taskDetails {
+    float: left;
+    width: 50%;
+    height: 50%;
+    background-image: url(assets/Tasks\ Detail\ Area.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.schedule {
+    float: left;
+    width: 50%;
+}
+
