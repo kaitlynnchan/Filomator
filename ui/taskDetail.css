@@ -3,17 +3,49 @@
     box-sizing: border-box;
 }
 
-.taskDetails {
+html,body {
+    width: 100%;
+    height:100%;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.schedule, .taskDetails {
     float: left;
     width: 50%;
-    height: 50%;
-    background-image: url(assets/Tasks\ Detail\ Area.svg);
-    background-size: cover;
+    height: cover;
+    flex-grow: 1;
+}
+
+.taskDetails {
+    background-image: url(assets/taskDetailBg.svg);
+    max-height:100%;
+    max-width:100%;
+    vertical-align:middle;
     background-repeat: no-repeat;
 }
 
-.schedule {
-    float: left;
-    width: 50%;
+
+.taskFonts, .scheduleFonts {
+    font-family:  'Roboto', sans-serif;
+    font-style: normal;
+    text-align: center;
 }
+
+.taskFonts {
+    color: white;
+}
+
+.scheduleFonts {
+    color: black;
+}
+
+@media (max-width: 50%) {
+    .container {
+        flex-direction: column;
+    }
+}
+
 
