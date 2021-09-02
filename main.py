@@ -6,17 +6,9 @@ import datetime
 from datetime import date
 from data_storage import *
 
-doc_types = ('.doc', '.docx', '.txt', '.pdf', '.xls', '.ppt', '.xlsx', '.pptx')
-img_types = ('.jpg', '.jpeg', '.png', '.svg', '.gif', '.tif', '.tiff')
-software_types = ('.exe', '.pkg', '.dmg')
-
-# now = datetime.datetime.now()
-# current_hour = now.hour
-# current_minute = now.minute
-# current_date = date.today()
-
-# global f_name
-# f_name = f"Screen Shot "
+# doc_types = ('.doc', '.docx', '.txt', '.pdf', '.xls', '.ppt', '.xlsx', '.pptx')
+# img_types = ('.jpg', '.jpeg', '.png', '.svg', '.gif', '.tif', '.tiff')
+# software_types = ('.exe', '.pkg', '.dmg')
 
 
 # assumes at least one of the following arguments is unique:
@@ -61,18 +53,6 @@ class Handler(FileSystemEventHandler):
                 number_files = len(os.listdir(new_path))
                 new = new_path + '/File-' + str((number_files + 1)) + str(file_extension)
                 os.rename(source, new)
-
-
-# path_file = open('path.txt', 'r')
-# tracker_paths = path_file.readline()
-# tracker = '/Users/kaitl'
-# path_file = open('path_destination.txt', 'r')
-# destination_paths = path_file.readline()
-# destination = '/Users/kaitl/Downloads/test'
-# if current_hour == 3:
-#     destination = '/Users/sahaj/Desktop/SC2'
-# elif current_hour == 4:
-#     destination = '/Users/sahaj/Desktop/SC3'
 
 
 event_handler = Handler()

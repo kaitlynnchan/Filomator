@@ -1,23 +1,23 @@
 import json
 from json.decoder import JSONDecodeError
+import datetime
+from datetime import date
 
 # JSON format
 #     {
 #         "name": {
-#             "time": {
-#                 "hour":"",
-#                 "min":""
-#             }, (24 hr format)
-#             "days_of_week":[],
-#             "source_path":"",
-#             "dest_path":"",
-#             "desired_files":[],
+#             "startTime":"", (HH:MM)
+#             "endTime":"",   (HH:MM)
+#             "daysOfWeek":[], monday = 0, sunday = 6
+#             "sourcePath":"",
+#             "destPath":"",
+#             "desiredFiles":[],
 #             "newFileName": ""
 #         }
 #     }
 
 global json_file
-json_file = "../data.json"
+json_file = "data.json"
 
 
 def convert_to_24_hr_clock(hour, is_time_pm):
@@ -31,9 +31,16 @@ def convert_to_24_hr_clock(hour, is_time_pm):
     return str(hour)
 
 
-def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desired_files, new_file_name):
+# convert hour and mins to datetime before calling write
+def convert_to_datetime(hour, mins):
+    if (not hour) or (hour is None) or (not mins) or (mins is None):
+        print("Parameters are not valid")
+    return datetime.time(int(hour), int(mins))
+
+
+def write_to_json(name, start_time, days_of_week, source_path, dest_path, desired_files, new_file_name):
     if (not name) or (name is None) \
-            or (not hour) or (hour is None) or (int(hour) == 0) or (not mins) or (name is mins) \
+            or (not start_time) or (start_time is None) \
             or (not days_of_week) or (days_of_week is None) \
             or (not source_path) or (source_path is None) or (not dest_path) or (dest_path is None) \
             or (not desired_files) or (desired_files is None)\
@@ -41,12 +48,21 @@ def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desire
         print("All fields must be filled")
         return
 
+    # converts start_time to datetime object
+    start_datetime = datetime.datetime.combine(datetime.date.today(), start_time)
+    delta_time = datetime.timedelta(minutes=10)
+    # set end_time to delta time ahead
+    end_datetime = start_datetime + delta_time
+    end_time = end_datetime.time()
+
+    # convert to string
+    start_time_str = start_time.strftime("%H:%M")
+    end_time_str = end_time.strftime("%H:%M")
+
     data_dict = {
         name: {
-            "time": {
-                "hours": hour,
-                "mins": mins
-            },
+            "startTime": start_time_str,
+            "endTime": end_time_str,
             "daysOfWeek": [],
             "sourcePath": source_path,
             "destPath": dest_path,
@@ -79,7 +95,8 @@ def extract_data_fr_json():
         with open(json_file) as file:
             # load file
             json_object = json.load(file)
-            print(json.dumps(json_object, indent=4))
+            # print(json.dumps(json_object, indent=4))
+            print("extracted data")
             return json_object
     except (IOError, JSONDecodeError):
         # file is empty or does not exists
@@ -113,8 +130,8 @@ def extract_entry(name):
         return None
 
 
-def extract_entry_by_key(key):
-    if key is None:
+def extract_entries_by_key(key_name):
+    if key_name is None:
         print("Argument cannot be null")
         return None
 
@@ -123,19 +140,48 @@ def extract_entry_by_key(key):
             # load file
             json_object = json.load(file)
 
-            for key, value in json_object.items():
-                pprint("Key:")
-                pprint(key)
+            # get all values in key for each element
+            key_values = []
+            for name in json_object:
+                key_values.append(json_object[name][key_name])
 
-            # check if entry is in json object
-            # if name in json_object:
-            #     # get entry at name
-            #     entry = json_object[name]
-            #     print(json.dumps(entry, indent=4))
-            #     return entry
-            # else:
-            #     print("Entry '" + name + "' was not found")
-            #     return None
+            print(key_values)
+            return key_values
+    except (IOError, JSONDecodeError):
+        # file is empty or does not exists
+        print("File is not accessible")
+        return None
+
+
+def get_entry_by_key(name, key):
+    if (key is None) or (name is None):
+        print("Argument cannot be null")
+        return None
+
+    try:
+        with open(json_file) as file:
+            # load file
+            json_object = json.load(file)
+
+            if name in json_object:
+                # get key for name
+                return json_object[name][key]
+            else:
+                print("Entry '" + name + "' was not found")
+                return None
+    except (IOError, JSONDecodeError):
+        # file is empty or does not exists
+        print("File is not accessible")
+        return None
+
+
+def get_all_names():
+    try:
+        with open(json_file) as file:
+            # load file
+            json_object = json.load(file)
+
+            return json_object.keys()
     except (IOError, JSONDecodeError):
         # file is empty or does not exists
         print("File is not accessible")
