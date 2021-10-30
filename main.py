@@ -18,15 +18,33 @@ class Handler(FileSystemEventHandler):
         names = get_all_names()
         for name in names:
             src_path = get_entry_by_key(name, "sourcePath")
-            hours = get_entry_by_key(name, "hours")
-            mins = get_entry_by_key(name, "mins")
+            start_time = get_entry_by_key(name, "startTime")
+            end_time = get_entry_by_key(name, "endTime")
             days_of_week = get_entry_by_key(name, "daysOfWeek")
 
             # check if date matches
             now = datetime.datetime.now()
-            if (now.hour == int(hours)) and (now.minute >= int(mins)) \
+            result_between = self.is_in_between(now.time(), start_time.time(), end_time.time())
+
+            delta_time = datetime.timedelta(days=result_between[1])
+            date_calculated = date.today() + delta_time;
+            if result_between[0] and result_between[1] == 0 \
                     and (date.today().weekday() in days_of_week):
                 self.find_files(name, now, src_path)
+            elif result_between[0] and result_between[1] == -1 \
+                    and (date_calculated.weekday() in days_of_week):
+                self.find_files(name, now, src_path)
+
+    def is_in_between(self, now, start_time, end_time):
+        print("start ", start_time)
+        print("  now ", now)
+        print("  end ", end_time)
+        if start_time < end_time:
+            print(" same day")
+            return now >= start_time and now <= end_time, 0
+        else:  # crosses midnight
+            print("overnight")
+            return now >= start_time or now <= end_time, -1
 
     def find_files(self, name, now, src_path):
         dest_path = get_entry_by_key(name, "destPath")

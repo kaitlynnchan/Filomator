@@ -38,22 +38,28 @@ def convert_to_datetime(hour, mins):
     return datetime.time(int(hour), int(mins))
 
 
-def write_to_json(name, start_time, days_of_week, source_path, dest_path, desired_files, new_file_name):
+# calculates end time from start time and delta time
+def calculateEndTime(start_time):
+    # converts start_time to datetime object
+    start_datetime = datetime.datetime.combine(datetime.date.today(), start_time)
+    delta_time = datetime.timedelta(minutes=10)
+
+    # set end_time to delta time ahead
+    end_datetime = start_datetime + delta_time
+    end_time = end_datetime.time()
+    return end_time
+
+
+def write_to_json(name, start_time, end_time, days_of_week, source_path, dest_path, desired_files, new_file_name):
     if (not name) or (name is None) \
             or (not start_time) or (start_time is None) \
+            or (not end_time) or (end_time is None) \
             or (not days_of_week) or (days_of_week is None) \
             or (not source_path) or (source_path is None) or (not dest_path) or (dest_path is None) \
             or (not desired_files) or (desired_files is None)\
             or (not new_file_name) or (new_file_name is None):
         print("All fields must be filled")
         return
-
-    # converts start_time to datetime object
-    start_datetime = datetime.datetime.combine(datetime.date.today(), start_time)
-    delta_time = datetime.timedelta(minutes=10)
-    # set end_time to delta time ahead
-    end_datetime = start_datetime + delta_time
-    end_time = end_datetime.time()
 
     # convert to string
     start_time_str = start_time.strftime("%H:%M")

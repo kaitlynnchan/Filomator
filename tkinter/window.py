@@ -150,7 +150,8 @@ def create_task():
     hour = entry1.get()
     hour = convert_to_24_hr_clock(hour, time_set_pm)
     start_time = convert_to_datetime(hour, entry2.get())
-    write_to_json(entry_name.get(), start_time, [0], entry0.get(), entry3.get(), [".jpg"], "new file")
+    end_time = calculateEndTime(start_time)
+    write_to_json(entry_name.get(), start_time, end_time, [0], entry0.get(), entry3.get(), [".jpg"], "new file")
     extract_data_fr_json()
 
 window = Tk()
