@@ -35,10 +35,9 @@ class Handler(FileSystemEventHandler):
                     and (date_calculated.weekday() in days_of_week):
                 self.find_files(name, now, src_path)
 
+    # determines if current time is in between start and end time
+    # returns True or False, and how many days overnight
     def is_in_between(self, now, start_time, end_time):
-        print("start ", start_time)
-        print("  now ", now)
-        print("  end ", end_time)
         if start_time < end_time:
             print(" same day")
             return now >= start_time and now <= end_time, 0
@@ -69,8 +68,9 @@ class Handler(FileSystemEventHandler):
 
                 # rename files
                 number_files = len(os.listdir(new_path))
-                new = new_path + '/File-' + str((number_files + 1)) + str(file_extension)
-                os.rename(source, new)
+                number_name = '/File-' + str((number_files + 1))
+                new_name = new_path + number_name + str(file_extension)
+                os.rename(source, new_name)
 
 
 event_handler = Handler()
