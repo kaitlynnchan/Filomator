@@ -1,13 +1,13 @@
 import json
 from json.decoder import JSONDecodeError
+import datetime
+from datetime import date
 
 # JSON format
 #     {
 #         "name": {
-#             "time": {
-#                 "hour":"",
-#                 "min":""
-#             }, (24 hr format)
+#             "startTime":"", (HH:MM)
+#             "endTime":"",   (HH:MM)
 #             "daysOfWeek":[], monday = 0, sunday = 6
 #             "sourcePath":"",
 #             "destPath":"",
@@ -31,9 +31,29 @@ def convert_to_24_hr_clock(hour, is_time_pm):
     return str(hour)
 
 
-def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desired_files, new_file_name):
+# convert hour and mins to datetime before calling write
+def convert_to_datetime(hour, mins):
+    if (not hour) or (hour is None) or (not mins) or (mins is None):
+        print("Parameters are not valid")
+    return datetime.time(int(hour), int(mins))
+
+
+# calculates end time from start time and delta time
+def calculateEndTime(start_time):
+    # converts start_time to datetime object
+    start_datetime = datetime.datetime.combine(datetime.date.today(), start_time)
+    delta_time = datetime.timedelta(minutes=10)
+
+    # set end_time to delta time ahead
+    end_datetime = start_datetime + delta_time
+    end_time = end_datetime.time()
+    return end_time
+
+
+def write_to_json(name, start_time, end_time, days_of_week, source_path, dest_path, desired_files, new_file_name):
     if (not name) or (name is None) \
-            or (not hour) or (hour is None) or (int(hour) == 0) or (not mins) or (name is mins) \
+            or (not start_time) or (start_time is None) \
+            or (not end_time) or (end_time is None) \
             or (not days_of_week) or (days_of_week is None) \
             or (not source_path) or (source_path is None) or (not dest_path) or (dest_path is None) \
             or (not desired_files) or (desired_files is None)\
@@ -41,12 +61,14 @@ def write_to_json(name, hour, mins, days_of_week, source_path, dest_path, desire
         print("All fields must be filled")
         return
 
+    # convert to string
+    start_time_str = start_time.strftime("%H:%M")
+    end_time_str = end_time.strftime("%H:%M")
+
     data_dict = {
         name: {
-            "time": {
-                "hours": hour,
-                "mins": mins
-            },
+            "startTime": start_time_str,
+            "endTime": end_time_str,
             "daysOfWeek": [],
             "sourcePath": source_path,
             "destPath": dest_path,
@@ -148,9 +170,9 @@ def get_entry_by_key(name, key):
             json_object = json.load(file)
 
             if name in json_object:
+                if (key == "startTime") or (key == "endTime"):
+                    return datetime.datetime.strptime(json_object[name][key], "%H:%M")
                 # get key for name
-                if (key == "hours") or (key == "mins"):
-                    return json_object[name]["time"][key]
                 return json_object[name][key]
             else:
                 print("Entry '" + name + "' was not found")

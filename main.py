@@ -6,17 +6,9 @@ import datetime
 from datetime import date
 from data_storage import *
 
-doc_types = ('.doc', '.docx', '.txt', '.pdf', '.xls', '.ppt', '.xlsx', '.pptx')
-img_types = ('.jpg', '.jpeg', '.png', '.svg', '.gif', '.tif', '.tiff')
-software_types = ('.exe', '.pkg', '.dmg')
-
-# now = datetime.datetime.now()
-# current_hour = now.hour
-# current_minute = now.minute
-# current_date = date.today()
-
-# global f_name
-# f_name = f"Screen Shot "
+# doc_types = ('.doc', '.docx', '.txt', '.pdf', '.xls', '.ppt', '.xlsx', '.pptx')
+# img_types = ('.jpg', '.jpeg', '.png', '.svg', '.gif', '.tif', '.tiff')
+# software_types = ('.exe', '.pkg', '.dmg')
 
 
 # assumes at least one of the following arguments is unique:
@@ -26,15 +18,32 @@ class Handler(FileSystemEventHandler):
         names = get_all_names()
         for name in names:
             src_path = get_entry_by_key(name, "sourcePath")
-            hours = get_entry_by_key(name, "hours")
-            mins = get_entry_by_key(name, "mins")
+            start_time = get_entry_by_key(name, "startTime")
+            end_time = get_entry_by_key(name, "endTime")
             days_of_week = get_entry_by_key(name, "daysOfWeek")
 
             # check if date matches
             now = datetime.datetime.now()
-            if (now.hour == int(hours)) and (now.minute >= int(mins)) \
+            result_between = self.is_in_between(now.time(), start_time.time(), end_time.time())
+
+            delta_time = datetime.timedelta(days=result_between[1])
+            date_calculated = date.today() + delta_time;
+            if result_between[0] and result_between[1] == 0 \
                     and (date.today().weekday() in days_of_week):
                 self.find_files(name, now, src_path)
+            elif result_between[0] and result_between[1] == -1 \
+                    and (date_calculated.weekday() in days_of_week):
+                self.find_files(name, now, src_path)
+
+    # determines if current time is in between start and end time
+    # returns True or False, and how many days overnight
+    def is_in_between(self, now, start_time, end_time):
+        if start_time < end_time:
+            print(" same day")
+            return now >= start_time and now <= end_time, 0
+        else:  # crosses midnight
+            print("overnight")
+            return now >= start_time or now <= end_time, -1
 
     def find_files(self, name, now, src_path):
         dest_path = get_entry_by_key(name, "destPath")
@@ -59,20 +68,9 @@ class Handler(FileSystemEventHandler):
 
                 # rename files
                 number_files = len(os.listdir(new_path))
-                new = new_path + '/File-' + str((number_files + 1)) + str(file_extension)
-                os.rename(source, new)
-
-
-# path_file = open('path.txt', 'r')
-# tracker_paths = path_file.readline()
-# tracker = '/Users/kaitl'
-# path_file = open('path_destination.txt', 'r')
-# destination_paths = path_file.readline()
-# destination = '/Users/kaitl/Downloads/test'
-# if current_hour == 3:
-#     destination = '/Users/sahaj/Desktop/SC2'
-# elif current_hour == 4:
-#     destination = '/Users/sahaj/Desktop/SC3'
+                number_name = '/File-' + str((number_files + 1))
+                new_name = new_path + number_name + str(file_extension)
+                os.rename(source, new_name)
 
 
 event_handler = Handler()
