@@ -1,10 +1,20 @@
-.container {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   height: 100vh;
+/** Dropdown button */
+.dropdown {
+    filter: drop-shadow( 0px 4px 4px rgb(0 0 0 / 37%));
+    color: #C27B75;
+    cursor: pointer;
+}
+.dropdown:hover {
+    filter: none !important;
+    color: #C27B75;
 }
 
-.taskDetailInput {
+/** Details Container */
+.taskDetails {
+    background-color: #524765;
+}
+
+.details {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -12,52 +22,22 @@
     justify-content: space-evenly;
 }
 
-dropDownButton {
-    height: 25px;
-    width: 20px;
-    margin: 5%;
+.details p {
+    color: white;
 }
 
-dropDownButton img:last-child {
-    display: none;
-}
-
-dropDownButton:hover img:last-child{
-    display: block;
-}
-
-dropDownButton:hover img:first-child{
-    display: none;
-}
-
-.scheduleBackground, .taskDetailBackground {
+/** Schedule Container */
+.schedule {
     display: flex;
     flex-direction: column;
 }
 
-.taskDetailBackground {
-    background-image: url(assets/taskDetailBg.svg);
-    max-width: 100%;
-    max-height: 100%;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-}
-
-.taskFonts, .scheduleFonts, .taskTextInput {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-style: normal;
+.schedule p {
     text-align: center;
     margin: 5%;
 }
 
-.taskFonts {
-    color: white;
-}
-
-.scheduleFonts, .taskTextInput{
-    color: black;
-}
-
+/** Input */
 input[type=text] {
     border: 1px black;
     border-radius: 20px;
