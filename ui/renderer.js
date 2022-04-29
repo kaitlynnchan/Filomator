@@ -35,8 +35,26 @@ window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
 
     // adding new task
-    var newTask = document.querySelector(".newTask");
+    var newTask = document.querySelector(".newTaskBtn");
     newTask.addEventListener('click', async ()=> {
        var daysOfWeekArray = getDaysOfWeek();
+    });
+
+//
+//    const { dialog } = require('electron').remote;
+//    var srcBtn = document.querySelector("#srcBtn");
+//    srcBtn.addEventListener("click", function(){
+//        console.log("clicking");
+//        dialog.showOpenDialog();
+//    });
+});
+
+const windowApi = window.api;
+
+document.querySelector("#srcBtn").addEventListener('click', async ()=> {
+//    windowApi.send("openFile", 'true');
+    console.log("clicking");
+    await windowApi.invoke("openFile").then(receivedData => {
+        console.log("received info");
     });
 });

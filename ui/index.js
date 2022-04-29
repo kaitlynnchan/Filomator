@@ -45,7 +45,7 @@ ipcMain.on("toMain", (event, args) => {
     var python = require('child_process').spawn('python', [`./python/${args[0]}`, args.slice(1)]);
     let result = [];
 
-    // For receiving data (receives as a readable stream) 
+    // For receiving data (receives as a readable stream)
     // - can be decoded into a string.
     python.stdout.on('data', function (data) {
         console.log("Python response: ", data);
@@ -94,3 +94,16 @@ ipcMain.handle("toMain", async (event, args) => {
     })
 })
 
+ipcMain.on("openFile", (event, args) => {
+    console.log("clicking2");
+    const { dialog } = require('electron');
+    dialog.showOpenDialog();
+});
+
+ipcMain.handle("openFile", async (event, args) => {
+    return new Promise(resolve => {
+        console.log("clicking2");
+        const { dialog } = require('electron');
+        dialog.showOpenDialog();
+    })
+})
