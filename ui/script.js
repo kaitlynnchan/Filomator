@@ -20,14 +20,6 @@ $(document).ready(function(){
         $(this).remove();
     });
 
-//    // open file explorer
-//    import dialog from 'electron';
-//    $("#srcBtn").on("click", function(){
-//        console.log("clicking");
-////        const { dialog } = require('electron');
-//        dialog.showOpenDialog();
-////        $("#srcExplorer").click();
-//    });
 });
 
 function fillTime(){
@@ -47,7 +39,3 @@ function fillTime(){
         $(".details .time .mins").append(option);
     }
 }
-
-//function openFileExplorer(){
-//    dialog.showOpenDialog({ properties: ['openDirectory'] });
-//}

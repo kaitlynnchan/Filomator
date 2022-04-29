@@ -40,21 +40,12 @@ window.addEventListener('load', (event) => {
        var daysOfWeekArray = getDaysOfWeek();
     });
 
-//
-//    const { dialog } = require('electron').remote;
-//    var srcBtn = document.querySelector("#srcBtn");
-//    srcBtn.addEventListener("click", function(){
-//        console.log("clicking");
-//        dialog.showOpenDialog();
-//    });
 });
 
 const windowApi = window.api;
 
 document.querySelector("#srcBtn").addEventListener('click', async ()=> {
-//    windowApi.send("openFile", 'true');
-    console.log("clicking");
-    await windowApi.invoke("openFile").then(receivedData => {
+    await windowApi.invoke("openExplorer").then(receivedData => {
         console.log("received info");
     });
 });

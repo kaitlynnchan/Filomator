@@ -94,16 +94,25 @@ ipcMain.handle("toMain", async (event, args) => {
     })
 })
 
-ipcMain.on("openFile", (event, args) => {
-    console.log("clicking2");
+ipcMain.on("openExplorer", (event, args) => {
     const { dialog } = require('electron');
-    dialog.showOpenDialog();
+    dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+      console.log(result.canceled)
+      console.log(result.filePaths)
+    }).catch(err => {
+      console.log(err)
+    });
 });
 
-ipcMain.handle("openFile", async (event, args) => {
+ipcMain.handle("openExplorer", async (event, args) => {
     return new Promise(resolve => {
         console.log("clicking2");
         const { dialog } = require('electron');
-        dialog.showOpenDialog();
+        dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+          console.log(result.canceled)
+          console.log(result.filePaths)
+        }).catch(err => {
+          console.log(err)
+        });
     })
 })
