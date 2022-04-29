@@ -17,13 +17,13 @@
         <script src="script.js"></script>
         <script src="renderer.js"></script>
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="taskDetail.css">
 
         <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="taskDetail.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
@@ -35,8 +35,8 @@
         <header>
             <h1>Filomator</h1>
         </header>
-        <div class="container row">
-            <div class="week col-12">
+        <div class="container">
+            <div class="week">
                 <button class="day selected">Mon</button>
                 <button class="day">Tues</button>
                 <button class="day">Wed</button>
@@ -44,59 +44,79 @@
                 <button class="day ">Fri</button>
             </div>
 
+            <div class="row">
             <div class="taskDetails col-sm-12 col-lg-6">
-                <ul style="list-style: none;">
-                    <li class="details">
+<!--                <ul style="list-style: none;">-->
+                    <div class="details">
                         <p>Name</p>
                         <input type="text" value="Input">
-                        <a class="dropdown selected fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
-                        </a>
-                    </li>
-                    <li class="details">
-                        <p>Random Input</p>
+                    </div>
+                    <div class="details">
+                        <p>Source</p>
                         <input type="text" value="Input">
                         <a class="dropdown selected fa-stack">
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
                         </a>
-                    </li>
-                    <li class="details">
-                        <p>Random Input</p>
+                    </div>
+                    <div class="details">
+                        <p>Destination</p>
                         <input type="text" value="Input">
                         <a class="dropdown selected fa-stack">
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
                         </a>
-                    </li>
-                    <li class="details">
-                        <p>Random Input</p>
+                    </div>
+                    <div class="details">
+                        <p>Save file as</p>
                         <input type="text" value="Input">
-                        <a class="dropdown selected fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
-                        </a>
-                    </li>
-                    <li class="details">
-                        <p>Random Input</p>
-                        <input type="text" value="Input">
-                        <a class="dropdown selected fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
-                        </a>
-                    </li>
-                </ul>
+                    </div>
+<!--                </ul>-->
             </div>
-            <div class="schedule col-sm-12 col-lg-6">
-                <div class="task"><p>Hello 2</p></div>
-                <div class="task"><p>Hello 2</p></div>
-                <div class="task"><p>Hello 2</p></div>
+
+            <div class="taskDetails col-sm-12 col-lg-6">
+<!--                <ul style="list-style: none;">-->
+                    <div class="details">
+                        <p>Start time</p>
+                        <div class="time">
+                            <select name="hour" class="hour">
+                            </select>
+                            <p>&nbsp; : &nbsp;</p>
+                            <select name="mins" class="mins">
+                            </select>
+                        </div>
+                        <div class="twelve-hour-clock">
+                            <button class="selected">AM</button>
+                            <button class="">PM</button>
+                        </div>
+<!--                        <input type="number" value="00" min="01" max="12">-->
+<!--                        <input type="number" value="00" min="00" max="59">-->
+                    </div>
+                    <div class="details">
+                        <p>Keywords</p>
+                        <input type="text" value="Input">
+                        <button class="day ">Calc</button>
+                    </div>
+                    <div class="details">
+                        <p>Extensions</p>
+                        <input type="text" value="Input">
+                        <button class="day ">.pdf</button>
+                    </div>
+<!--                </ul>-->
+            </div>
+<!--            <div class="schedule col-sm-12 col-lg-6">-->
+<!--                <div class="task"><p>Hello 2</p></div>-->
+<!--                <div class="task"><p>Hello 2</p></div>-->
+<!--                <div class="task"><p>Hello 2</p></div>-->
+<!--            </div>-->
             </div>
         </div>
 
         <div>
-            <button class="newTask" style="float:right; bottom: 0;">New Task</button>
+            <button class="newTaskBtn">
+                Add New Task
+                <i class="fas fa-plus fa-fw"></i>
+            </button>
         </div>
 
 <!--        <script src="renderer.js"></script>-->
