@@ -1,0 +1,192 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: fixed linear-gradient(0, #524765 0%, #D08A6B 100%);
+}
+
+header {
+    background-color: #524765;
+    padding: 10px 20px;
+    border-radius: 0 0 20px 20px;
+}
+
+/** Title */
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+/** Container */
+.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.container > .row {
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+button, input, select{
+    /*margin: 10px;*/
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    background-color: #efefef;
+}
+
+/** Week */
+.container .week{
+    display: flex;
+    margin: 30px 0;
+}
+.week .day{
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    /**border: none;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);*/
+    font-size: 20px;
+}
+.week .day.selected{
+    background-color: #E6B66F;
+    color: #FFFFFF;
+    box-shadow: none !important;
+}
+
+/** Details Container */
+.taskDetails {
+    background-color: #524765;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px 20px 0 0;
+}
+.taskDetails.pull-right{
+    background-color: revert;
+    color: black;
+}
+.details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    margin: auto 0;
+}
+.details *{
+    height: 40px;
+}
+.details > div{
+    padding: 0 40px;
+}
+
+.details p, .details h4 {
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: unset;
+    text-align: end;
+    font-size: x-large;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/** Time */
+.details .time{
+    display: flex;
+}
+.details .time p{
+    text-align: center;
+}
+.details .time select{
+    border-radius: 20px;
+    padding: 3px 5px;
+}
+
+.details .twelve-hour-clock{
+    padding: 0;
+}
+.details .twelve-hour-clock button{
+    margin: 2px;
+    padding: 3px 15px;
+}
+.details .twelve-hour-clock button.selected{
+    background-color: #E6B66F;
+    color: #FFFFFF;
+    box-shadow: none !important;
+}
+
+/** File Types */
+.details .keywords, .details .extensions{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+/** Input */
+input[type=text] {
+    border: 1px black;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+/** Label Buttons */
+.details .labelBtn{
+    background-color: #425B6B;
+    color: #FFFFFF;
+    padding: 8px 10px;
+    margin: 15px 5px 0 5px;
+}
+
+/** Dropdown Button */
+.dropdown {
+    filter: drop-shadow( 0px 4px 4px rgb(0 0 0 / 37%));
+    color: #C27B75;
+    cursor: pointer;
+}
+.dropdown:hover {
+    filter: none !important;
+    color: #C27B75;
+}
+
+/** New Task Button */
+#newTaskBtn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #C27B75;
+    padding: 10px;
+    border-radius: 12px 0 0;
+    color: white;
+}
+
+/** Schedule Container */
+.schedule {
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid #524765;
+}
+
+.schedule p {
+    text-align: center;
+    margin: 5%;
+}

@@ -2,6 +2,8 @@ import json
 from json.decoder import JSONDecodeError
 import datetime
 from datetime import date
+from sys import argv
+import string
 
 # JSON format
 #     {
@@ -17,7 +19,7 @@ from datetime import date
 #     }
 
 global json_file
-json_file = "data.json"
+json_file = "../assets/data.json"
 
 
 def convert_to_24_hr_clock(hour, is_time_pm):
@@ -25,9 +27,12 @@ def convert_to_24_hr_clock(hour, is_time_pm):
         print("Parameters are not valid")
 
     hour = int(hour)
-    if is_time_pm and 0 < hour <= 12:
+    if is_time_pm == 'PM' and 0 < hour <= 12:
         # convert time to 24 hour clock
         hour += 12
+    # if is_time_pm and 0 < hour <= 12:
+    #     # convert time to 24 hour clock
+    #     hour += 12
     return str(hour)
 
 
@@ -76,8 +81,8 @@ def write_to_json(name, start_time, end_time, days_of_week, source_path, dest_pa
             "newFileName": new_file_name
         }
     }
-    data_dict[name]["daysOfWeek"] = days_of_week
-    data_dict[name]["desiredFiles"] = desired_files
+    data_dict[name]["daysOfWeek"] = [days_of_week]
+    data_dict[name]["desiredFiles"] = [desired_files]
 
     try:
         with open(json_file) as file:
@@ -194,3 +199,29 @@ def get_all_names():
         # file is empty or does not exists
         print("File is not accessible")
         return None
+
+
+if __name__ == '__main__':
+    # parse argument array
+    time = argv[2].strip("[]")
+    time = time.split(",")
+    for i in range(len(time)):
+        time[i] = time[i].strip('\'')
+    hour = convert_to_24_hr_clock(time[0], time[2])
+    start_time = convert_to_datetime(hour, time[1])
+    end_time = calculateEndTime(start_time)
+
+    # parse argument array
+    week = argv[3].strip('[]')
+    week = week.split(",")
+    for i in range(len(week)):
+        week[i] = week[i].strip('\'')
+        week[i] = int(week[i])
+
+    # parse argument array
+    files = argv[6].strip('[]')
+    files = files.split(",")
+    for i in range(len(files)):
+        files[i] = files[i].strip('\'')
+
+    write_to_json(argv[1].strip('\''), start_time, end_time, week, argv[4].strip('\''), argv[5].strip('\''), files, argv[7].strip('\''))
