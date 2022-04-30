@@ -17,6 +17,7 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js')
         }
     })
+    win.maximize();
 
     // Loading html file
     win.loadFile('index.html');
