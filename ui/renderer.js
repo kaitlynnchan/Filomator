@@ -58,7 +58,7 @@ function getStartTime() {
     startTime.push(document.querySelector("#mins").value);
 
     var val = document.querySelector(".twelve-hour-clock button.selected");
-    if(val.textContent == 'PM'){
+    if(val.innerText == 'PM'){
         startTime.push(true);
     } else{
         startTime.push(false);
