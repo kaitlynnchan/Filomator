@@ -15,11 +15,23 @@ $(document).ready(function(){
         console.log("toggled");
     });
 
-    // remove variable
-    $(".details .varBtn").on("click", function(){
-        $(this).remove();
+    // add new values from input to keywords list
+    $("#keyWInput").on("keydown", function(event){
+        if(event.keyCode == 13) {
+            var val = $(this).val();
+            var varBtn = "<button class='varBtn' onclick='removeVar(this)'>" + val + "&nbsp;<i class='fas fa-xmark'></i></button>";
+            $(".keywords").append(varBtn);
+        }
     });
 
+    // add new values from input to extensions list
+    $("#extnInput").on("keydown", function(event){
+        if(event.keyCode == 13) {
+            var val = $(this).val();
+            var varBtn = "<button class='varBtn' onclick='removeVar(this)'>" + val + "&nbsp;<i class='fas fa-xmark'></i></button>";
+            $(".extensions").append(varBtn);
+        }
+    });
 });
 
 function fillTime(){
@@ -38,4 +50,9 @@ function fillTime(){
         }
         $(".details .time .mins").append(option);
     }
+}
+
+// remove var from list
+function removeVar(element){
+    element.remove();
 }
