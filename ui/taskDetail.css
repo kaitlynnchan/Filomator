@@ -1,4 +1,4 @@
-.container .row {
+.container > .row {
     padding: 0;
     margin: 0;
     flex-grow: 1;
@@ -18,6 +18,9 @@
 /** Details Container */
 .taskDetails {
     background-color: #524765;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px 20px 0 0;
 }
 
 .details {
@@ -26,11 +29,17 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: start;
+    margin: auto 0;
 }
 
-.details p {
+.details p, .details h4 {
     color: white;
     margin: 0;
+    padding: 0;
+    height: unset;
+    text-align: end;
+    font-size: x-large;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 /** Schedule Container */
@@ -49,28 +58,41 @@
 input[type=text] {
     border: 1px black;
     border-radius: 20px;
-    height: 30px;
-    margin: 5%;
+    padding: 10px;
+    width: 100%;
 }
 
-.details button{
-    margin: 10px;
-    border-radius: 15px;
+.details *{
+    height: 40px;
+}
+
+button, input, select{
+    /*margin: 10px;*/
+    border-radius: 20px;
     border: none;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    background-color: #efefef;
 }
 
 .details .time{
     display: flex;
-    margin: 10px;
+}
+.details .time p{
+    text-align: center;
+}
+.details .time select{
+    border-radius: 20px;
+    padding: 3px 5px;
 }
 
+
 .details .twelve-hour-clock{
-    padding: 0 10px;
+    padding: 0;
 }
 
 .details .twelve-hour-clock button{
     margin: 2px;
+    padding: 3px 15px;
 }
 
 
@@ -81,7 +103,17 @@ input[type=text] {
 }
 
 .details .varBtn{
-    margin-top: 0;
+    margin-top: 15px;
     background-color: #425B6B;
     color: #FFFFFF;
+    padding: 8px 10px;
+}
+
+.details > div{
+    padding: 0 40px;
+}
+
+.taskDetails.pull-right{
+    background-color: revert;
+    color: black;
 }

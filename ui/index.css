@@ -11,11 +11,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: linear-gradient(0, #524765 0%, #D08A6B 100%);
 }
 
 header {
     background-color: #524765;
     padding: 10px 20px;
+    border-radius: 0 0 20px 20px;
 }
 
 /** Title */
@@ -39,15 +41,15 @@ header h1 {
 /** Week */
 .container .week{
     display: flex;
-    margin: 10px 0;
+    margin: 30px 0;
 }
 
 .week .day{
     width: 100%;
     margin: 10px;
     padding: 10px;
-    border-radius: 15px;
-    border: 1px solid #000000;
+    border: none;
+    border-radius: 20px;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     font-size: 20px;
 }
@@ -66,4 +68,5 @@ header h1 {
     background-color: #C27B75;
     padding: 10px;
     border-radius: 12px 0 0;
+    color: white;
 }

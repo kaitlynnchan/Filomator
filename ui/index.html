@@ -44,72 +44,68 @@
             </div>
 
             <div class="row">
-            <div class="taskDetails col-sm-12 col-lg-6">
-<!--                <ul style="list-style: none;">-->
-                    <div class="details">
-                        <p>Name</p>
-                        <input type="text" placeholder="Math">
+                <div class="taskDetails col-sm-12 col-lg-6">
+                    <div class="details row">
+                        <p class="col-3">Name</p>
+                        <div class="col-8"><input type="text" placeholder="Math"></div>
                     </div>
-                    <div class="details">
-                        <p>Source</p>
-                        <input type="text" placeholder="/home/downloads">
-                        <a class="dropdown selected source fa-stack" id="srcBtn">
+                    <div class="details row">
+                        <p class="col-3">Source</p>
+                        <div class="col-8"><input type="text" placeholder="/home/downloads"></div>
+                        <a class="dropdown selected source fa-stack col-2" id="srcBtn">
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
                         </a>
-                        <input type="file" webkitdirectory directory id="srcExplorer" style="display:none;">
+<!--                        <input type="file" webkitdirectory directory id="srcExplorer" style="display:none;">-->
                     </div>
-                    <div class="details">
-                        <p>Destination</p>
-                        <input type="text" placeholder="/home/notes">
-                        <a class="dropdown selected fa-stack">
+                    <div class="details row">
+                        <p class="col-3">Destination</p>
+                        <div class="col-8"><input type="text" placeholder="/home/notes"></div>
+                        <a class="dropdown selected fa-stack col-2">
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
                         </a>
                     </div>
-                    <div class="details">
-                        <p>Save file as</p>
-                        <input type="text" placeholder="NewFileName">
+                    <div class="details row">
+                        <p class="col-3">Save file as</p>
+                        <div class="col-8"><input type="text" placeholder="NewFileName"></div>
                     </div>
-<!--                </ul>-->
-            </div>
+                </div>
 
-            <div class="taskDetails col-sm-12 col-lg-6">
-<!--                <ul style="list-style: none;">-->
-                    <div class="details">
-                        <p>Start time</p>
-                        <div class="time">
+                <div class="taskDetails col-sm-12 col-lg-6 pull-right">
+                    <div class="details row">
+                        <p class="col-3">Start time</p>
+                        <div class="time col-5">
                             <select name="hour" class="hour">
                             </select>
                             <p>&nbsp; : &nbsp;</p>
                             <select name="mins" class="mins">
                             </select>
                         </div>
-                        <div class="twelve-hour-clock">
+                        <div class="twelve-hour-clock col-3">
                             <button class="selected">AM</button>
                             <button class="">PM</button>
                         </div>
                     </div>
                     <div class="details row">
-                        <p class="col-2" style="padding: 0;">Keywords</p>
-                        <div class="col-10" style="padding: 0;"><input type="text" placeholder="all"></div>
+                        <p class="col-3">Keywords</p>
+                        <div class="col-8"><input type="text" placeholder="all"></div>
 
-                        <div class="col-2"></div>
-                        <div class="keywords col-10">
+                        <div class="col-3"></div>
+                        <div class="keywords col-8">
                             <button class="varBtn">all &nbsp;<i class="fas fa-xmark"></i></button>
                         </div>
                     </div>
                     <div class="details row">
-                        <p class="col-2" style="padding: 0;">Extensions</p>
-                        <div class="col-10" style="padding: 0;"><input type="text" placeholder="all"></div>
+                        <p class="col-3">Extensions</p>
+                        <div class="col-8"><input type="text" placeholder="all"></div>
 
-                        <div class="col-2"></div>
-                        <div class="extensions col-10">
+                        <div class="col-3"></div>
+                        <div class="extensions col-8">
                             <button class="varBtn">all &nbsp;<i class="fas fa-xmark"></i></button>
                         </div>
                     </div>
-<!--                </ul>-->
-            </div>
+                </div>
 <!--            <div class="schedule col-sm-12 col-lg-6">-->
 <!--                <div class="task"><p>Hello 2</p></div>-->
 <!--                <div class="task"><p>Hello 2</p></div>-->
