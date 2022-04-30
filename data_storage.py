@@ -199,6 +199,7 @@ def get_all_names():
 
 
 if __name__ == '__main__':
+    # parse argument array
     time = argv[2].strip("[]")
     time = time.split(",")
     for i in range(len(time)):
@@ -207,12 +208,14 @@ if __name__ == '__main__':
     start_time = convert_to_datetime(hour, time[1])
     end_time = calculateEndTime(start_time)
 
+    # parse argument array
     week = argv[3].strip('[]')
     week = week.split(",")
     for i in range(len(week)):
         week[i] = week[i].strip('\'')
         week[i] = int(week[i])
 
+    # parse argument array
     files = argv[6].strip('[]')
     files = files.split(",")
     for i in range(len(files)):

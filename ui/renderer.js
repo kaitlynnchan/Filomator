@@ -1,16 +1,3 @@
-
-//const windowApi = window.api;
-//
-//button.addEventListener('click', async ()=> {
-//    let data = windowApi.packageData("python/calc.py", input.value);
-//    // window.api.send("toMain", data);
-//    await windowApi.invoke("toMain", data).then(receivedData => {
-//        result.textContent = receivedData;
-//    });
-//});
-//
-//button.dispatchEvent(new Event('click'));
-
 const windowApi = window.api;
 
 document.querySelector("#srcBtn").addEventListener('click', async ()=> {
@@ -32,20 +19,21 @@ window.addEventListener('load', (event) => {
 
     // adding new task
     document.querySelector("#newTaskBtn").addEventListener('click', async ()=> {
-        // name, start_time, end_time, days_of_week, source_path, dest_path, desired_files, new_file_name
-        // write_to_json(argv[0], start_time, end_time, argv[2], argv[3], argv[4], argv[5], argv[6])
         var name = getName();
         var startTime = getStartTime();
         var srcPath = getSrcPath();
         var destPath = getDestPath();
-//        var endTime = getEndTime();
         var daysOfWeekArray = getDaysOfWeek();
         var desiredFiles = getFileTypes();
         var newFileName = getNewFileName();
 
         let data = windowApi.packageData("../data_storage.py", name, startTime, daysOfWeekArray, srcPath, destPath, desiredFiles, newFileName);
         await windowApi.invoke("runDataStorage", data).then(receivedData => {
-            console.log("successfully added task");
+            if(receivedData.includes("All fields must be filled")){
+                alert(receivedData);
+            } else{
+                alert("Successfully added task")
+            }
         });
     });
 

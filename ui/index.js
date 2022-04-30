@@ -38,62 +38,6 @@ app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit();
 })
 
-
-// Receiving the front end code
-// We can actually modify it to specify which python files!
-//ipcMain.on("toMain", (event, args) => {
-//    var python = require('child_process').spawn('python', [`./python/${args[0]}`, args.slice(1)]);
-//    let result = [];
-//
-//    // For receiving data (receives as a readable stream)
-//    // - can be decoded into a string.
-//    python.stdout.on('data', function (data) {
-//        console.log("Python response: ", data);
-//        result.push(Buffer.from(data));
-//    });
-//    python.stdout.on('end', function() {
-//        event.reply('toMain', Buffer.concat(result));
-//    })
-//
-//    // Error handling
-//    python.stderr.on('data', (data) => {
-//        console.error(result);
-//        event.reply('toMain', data);
-//    });
-//
-//    python.on('close', (code) => {
-//        console.log(`child process exited with code ${code}`);
-//    })
-//});
-
-//ipcMain.handle("toMain", async (event, args) => {
-//    return new Promise(resolve => {
-//        var python = require('child_process').spawn('python', [`./python/${args[0]}`, args.slice(1)]);
-//        let result = [];
-//
-//        // For receiving data (receives as a readable stream)
-//        // - can be decoded into a string.
-//        python.stdout.on('data', function (data) {
-//            console.log("Python response: ", data);
-//            result.push(Buffer.from(data));
-//        });
-//        python.stdout.on('end', function() {
-//            console.log("Returning buffer");
-//            resolve(Buffer.concat(result));
-//        })
-//
-//        // Error handling
-//        python.stderr.on('data', (data) => {
-//            console.error(result);
-//            return data;
-//        });
-//
-//        python.on('close', (code) => {
-//            console.log(`child process exited with code ${code}`);
-//        })
-//    })
-//})
-
 ipcMain.on("openExplorer", (event, args) => {
     const { dialog } = require('electron');
 
