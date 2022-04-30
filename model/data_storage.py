@@ -27,7 +27,7 @@ def convert_to_24_hr_clock(hour, is_time_pm):
         print("Parameters are not valid")
 
     hour = int(hour)
-    if is_time_pm == 'true' and 0 < hour <= 12:
+    if is_time_pm == 'PM' and 0 < hour <= 12:
         # convert time to 24 hour clock
         hour += 12
     # if is_time_pm and 0 < hour <= 12:

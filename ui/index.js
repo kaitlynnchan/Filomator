@@ -45,8 +45,12 @@ ipcMain.on("openExplorer", (event, args) => {
     dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
         console.log(result.canceled);
         console.log(result.filePaths);
+
+        // convert result to Buffer object
         let val = [];
         val.push(Buffer.from(result.filePaths[0]));
+
+        // return value
         event.reply('openExplorer', Buffer.concat(val));
     }).catch(err => {
         console.log(err)
@@ -61,8 +65,12 @@ ipcMain.handle("openExplorer", async (event, args) => {
         dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
             console.log(result.canceled)
             console.log(result.filePaths)
+
+            // convert result to Buffer object
             let val = [];
             val.push(Buffer.from(result.filePaths[0]));
+
+            // return value
             resolve(Buffer.concat(val));
         }).catch(err => {
             console.log(err)
@@ -72,7 +80,8 @@ ipcMain.handle("openExplorer", async (event, args) => {
 
 
 ipcMain.on("runDataStorage", (event, args) => {
-    var python = require('child_process').spawn('python', [`../${args[0]}`, args.slice(1)]);
+    // create arguments to execute
+    var python = require('child_process').spawn('python', args.slice());
     let result = [];
 
     // For receiving data (receives as a readable stream)
