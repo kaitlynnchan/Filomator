@@ -27,7 +27,7 @@ window.addEventListener('load', (event) => {
         var desiredFiles = getFileTypes();
         var newFileName = getNewFileName();
 
-        let data = windowApi.packageData("../data_storage.py", name, startTime, daysOfWeekArray, srcPath, destPath, desiredFiles, newFileName);
+        let data = windowApi.packageData("../model/data_storage.py", name, startTime, daysOfWeekArray, srcPath, destPath, desiredFiles, newFileName);
         await windowApi.invoke("runDataStorage", data).then(receivedData => {
             if(receivedData.includes("All fields must be filled")){
                 alert(receivedData);

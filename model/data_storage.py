@@ -19,7 +19,7 @@ import string
 #     }
 
 global json_file
-json_file = "data.json"
+json_file = "../assets/data.json"
 
 
 def convert_to_24_hr_clock(hour, is_time_pm):
