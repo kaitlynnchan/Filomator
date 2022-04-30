@@ -45,7 +45,18 @@ window.addEventListener('load', (event) => {
 const windowApi = window.api;
 
 document.querySelector("#srcBtn").addEventListener('click', async ()=> {
+//    windowApi.send("openExplorer");
     await windowApi.invoke("openExplorer").then(receivedData => {
         console.log("received info");
+        document.querySelector("#srcInput").value = receivedData;
     });
 });
+
+document.querySelector("#destnBtn").addEventListener('click', async ()=> {
+//    windowApi.send("openExplorer");
+    await windowApi.invoke("openExplorer").then(receivedData => {
+        console.log("received info");
+        document.querySelector("#destnInput").value = receivedData;
+    });
+});
+

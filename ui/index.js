@@ -97,10 +97,14 @@ ipcMain.handle("toMain", async (event, args) => {
 ipcMain.on("openExplorer", (event, args) => {
     const { dialog } = require('electron');
     dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
-      console.log(result.canceled)
-      console.log(result.filePaths)
+        console.log(result.canceled);
+        console.log(result.filePaths);
+            let val = [];
+            val.push(Buffer.from(result.filePaths[0]));
+        event.reply('openExplorer', Buffer.concat(val));
+//        event.sender.send('openExplorerReply', result.filePaths);
     }).catch(err => {
-      console.log(err)
+        console.log(err)
     });
 });
 
@@ -109,10 +113,13 @@ ipcMain.handle("openExplorer", async (event, args) => {
         console.log("clicking2");
         const { dialog } = require('electron');
         dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
-          console.log(result.canceled)
-          console.log(result.filePaths)
+            console.log(result.canceled)
+            console.log(result.filePaths)
+            let val = [];
+            val.push(Buffer.from(result.filePaths[0]));
+            resolve(Buffer.concat(val));
         }).catch(err => {
-          console.log(err)
+            console.log(err)
         });
     })
 })
