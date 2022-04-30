@@ -19,8 +19,8 @@ $(document).ready(function(){
     $("#keyWInput").on("keydown", function(event){
         if(event.keyCode == 13) {
             var val = $(this).val();
-            var varBtn = "<button class='varBtn' onclick='removeVar(this)'>" + val + "&nbsp;<i class='fas fa-xmark'></i></button>";
-            $(".keywords").append(varBtn);
+            var labelBtn = "<button class='labelBtn' onclick='removeLabel(this)'>" + val + "&nbsp;<i class='fas fa-xmark'></i></button>";
+            $(".keywords").append(labelBtn);
         }
     });
 
@@ -28,8 +28,8 @@ $(document).ready(function(){
     $("#extnInput").on("keydown", function(event){
         if(event.keyCode == 13) {
             var val = $(this).val();
-            var varBtn = "<button class='varBtn' onclick='removeVar(this)'>" + val + "&nbsp;<i class='fas fa-xmark'></i></button>";
-            $(".extensions").append(varBtn);
+            var labelBtn = "<button class='labelBtn' onclick='removeLabel(this)'>" + val + "&nbsp;<i class='fas fa-xmark'></i></button>";
+            $(".extensions").append(labelBtn);
         }
     });
 });
@@ -52,7 +52,7 @@ function fillTime(){
     }
 }
 
-// remove var from list
-function removeVar(element){
+// remove label from list
+function removeLabel(element){
     element.remove();
 }
