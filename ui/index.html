@@ -46,7 +46,7 @@
                 <div class="taskDetails col-sm-12 col-lg-6">
                     <div class="details row">
                         <p class="col-3">Name</p>
-                        <div class="col-8"><input type="text" placeholder="Math"></div>
+                        <div class="col-8"><input type="text" id="nameInput" placeholder="Math"></div>
                     </div>
                     <div class="details row">
                         <p class="col-3">Source</p>
@@ -59,15 +59,15 @@
                     </div>
                     <div class="details row">
                         <p class="col-3">Destination</p>
-                        <div class="col-8"><input type="text" id="destnInput" placeholder="/home/notes"></div>
-                        <a class="dropdown selected fa-stack col-2" id="destnBtn">
+                        <div class="col-8"><input type="text" id="destInput" placeholder="/home/notes"></div>
+                        <a class="dropdown selected fa-stack col-2" id="destBtn">
                             <i class="fa fa-square fa-stack-2x"></i>
                             <i class="fas fa-angle-down fa-stack-1x" style="color: #FFFFFF"></i>
                         </a>
                     </div>
                     <div class="details row">
                         <p class="col-3">Save file as</p>
-                        <div class="col-8"><input type="text" placeholder="NewFileName"></div>
+                        <div class="col-8"><input type="text" id="newFileNameInput" placeholder="NewFileName"></div>
                     </div>
                 </div>
 
@@ -75,10 +75,10 @@
                     <div class="details row">
                         <p class="col-3">Start time</p>
                         <div class="time col-5">
-                            <select name="hour" class="hour">
+                            <select name="hour" class="hour" id="hour">
                             </select>
                             <p>&nbsp; : &nbsp;</p>
-                            <select name="mins" class="mins">
+                            <select name="mins" class="mins" id="mins">
                             </select>
                         </div>
                         <div class="twelve-hour-clock col-3">
@@ -109,7 +109,7 @@
         </div>
 
         <div>
-            <button class="newTaskBtn">
+            <button id="newTaskBtn">
                 Add New Task
                 <i class="fas fa-plus fa-fw"></i>
             </button>

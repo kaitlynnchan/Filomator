@@ -169,7 +169,7 @@ input[type=text] {
 }
 
 /** New Task Button */
-.newTaskBtn {
+#newTaskBtn {
     position: fixed;
     bottom: 0;
     right: 0;

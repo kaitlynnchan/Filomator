@@ -194,3 +194,11 @@ def get_all_names():
         # file is empty or does not exists
         print("File is not accessible")
         return None
+
+
+if __name__ == '__main__':
+    time = argv[1]
+    hour = convert_to_24_hr_clock(time[0], time[2])
+    start_time = convert_to_datetime(hour, time[1])
+    end_time = calculateEndTime(start_time)
+    write_to_json(argv[0], start_time, end_time, argv[2], argv[3], argv[4], argv[5], argv[6])
