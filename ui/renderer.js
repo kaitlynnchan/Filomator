@@ -40,8 +40,13 @@ window.addEventListener('load', (event) => {
         var destPath = getDestPath();
 //        var endTime = getEndTime();
         var daysOfWeekArray = getDaysOfWeek();
-//        var desiredFiles = getFileTypes();
+        var desiredFiles = getFileTypes();
         var newFileName = getNewFileName();
+
+        let data = windowApi.packageData("../data_storage.py", name, startTime, daysOfWeekArray, srcPath, destPath, desiredFiles, newFileName);
+        await windowApi.invoke("runDataStorage", data).then(receivedData => {
+            console.log("successfully added task");
+        });
     });
 
 });
@@ -61,14 +66,14 @@ function getNewFileName() {
 
 function getStartTime() {
     var startTime = [];
-    startTime.append(document.querySelector("#hour").value);
-    startTime.append(document.querySelector("#mins").value);
+    startTime.push(document.querySelector("#hour").value);
+    startTime.push(document.querySelector("#mins").value);
 
-    var val = document.querySelector(".twelve-hour-clock .selected");
-    if(val[0].textContent == 'PM'){
-        startTime.append(true);
+    var val = document.querySelector(".twelve-hour-clock button.selected");
+    if(val.textContent == 'PM'){
+        startTime.push(true);
     } else{
-        startTime.append(false);
+        startTime.push(false);
     }
     return startTime;
 }
@@ -95,22 +100,28 @@ function getDaysOfWeek() {
 
 function getFileTypes() {
     const fileTypes = [];
-    var keywords = document.querySelector(".keywords").children();
+    var keywords = document.querySelector(".keywords").getElementsByClassName("labelBtn");
     for(let i = 0; i < keywords.length; i++){
-//    check if its all
-//        strip html, space and icon
-//        if(keywords[i].innerHTML ){
-//            fileTypes.push(i);
-//        }
+        var inner = keywords[i].innerHTML;
+        inner = inner.split("&nbsp;");
+        if(inner[0] === 'all'){
+            fileTypes.push("*");
+        } else{
+            fileTypes.push(inner[0]);
+        }
     }
 
-    var extensions = document.querySelector(".extensions").children();
+    var extensions = document.querySelector(".extensions").getElementsByClassName("labelBtn");
     for(let i = 0; i < extensions.length; i++){
-//    check if its all
-//        strip html, space and icon
-//        if(extensions[i].innerHTML ){
-//            fileTypes.push(i);
-//        }
+        var inner = extensions[i].innerHTML;
+        inner = inner.split("&nbsp;");
+        if(inner[0] === 'all'){
+            fileTypes.push(".*");
+        } else if(inner[0].charAt(0) != '.'){
+            fileTypes.push('.' + inner[0]);
+        } else{
+            fileTypes.push(inner[0]);
+        }
     }
     console.log(fileTypes);
     return fileTypes;
