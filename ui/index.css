@@ -1,0 +1,70 @@
+:root {
+    --purple: #524765;
+    --orange: #D08A6B;
+    --light-orange: #E6B66F;
+    --pink: #C27B75;
+    --blue: #425B6B;
+    --grey: #efefef;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: fixed linear-gradient(180deg, var(--purple) 0%, var(--orange) 100%);
+}
+
+.container, div > * {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/** Logo */
+.logo {
+    width: 180px;
+    height: auto;
+}
+
+/** Title */
+.container h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 80px;
+    font-weight: revert;
+    color: white;
+    margin: 10px;
+}
+
+/** <a> Button Style */
+a, a:hover {
+    background-color: var(--blue);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    display: flex;
+}
+a > * {
+    margin: auto;
+}
+
+/** Button */
+.buttons > * {
+    margin: 20px 10px
+}
+
+/** Fixed button right */
+.fixed-button.pull-right {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+.fixed-button.pull-right > * {
+    padding: 10px 19px;
+}

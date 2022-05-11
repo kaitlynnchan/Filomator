@@ -1,3 +1,12 @@
+:root {
+    --purple: #524765;
+    --orange: #D08A6B;
+    --light-orange: #E6B66F;
+    --pink: #C27B75;
+    --blue: #425B6B;
+    --grey: #efefef;
+}
+
 * {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -11,21 +20,27 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: fixed linear-gradient(0, #524765 0%, #D08A6B 100%);
+    background: fixed linear-gradient(0, var(--purple) 0%, var(--orange) 100%);
 }
 
 header {
-    background-color: #524765;
+    background-color: var(--purple);
     padding: 10px 20px;
     border-radius: 0 0 20px 20px;
+    display: flex;
 }
 
 /** Title */
 header h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 30px;
-    color: #FFFFFF;
+    color: white;
     margin: 0;
+    float: left;
+}
+header a, header a:hover {
+    margin: auto;
+    color: white;
 }
 
 /** Container */
@@ -44,20 +59,20 @@ header h1 {
     flex-grow: 1;
 }
 
-button, input, select{
+button, input, select {
     /*margin: 10px;*/
     border-radius: 20px;
     border: none;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
-    background-color: #efefef;
+    background-color: var(--grey);
 }
 
 /** Week */
-.container .week{
+.container .week {
     display: flex;
     margin: 30px 0;
 }
-.week .day{
+.week .day {
     width: 100%;
     margin: 10px;
     padding: 10px;
@@ -66,20 +81,20 @@ button, input, select{
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);*/
     font-size: 20px;
 }
-.week .day.selected{
-    background-color: #E6B66F;
-    color: #FFFFFF;
+.week .day.selected {
+    background-color: var(--light-orange);
+    color: white;
     box-shadow: none !important;
 }
 
 /** Details Container */
 .taskDetails {
-    background-color: #524765;
+    background-color: var(--purple);
     display: flex;
     flex-direction: column;
     border-radius: 20px 20px 0 0;
 }
-.taskDetails.pull-right{
+.taskDetails.pull-right {
     background-color: revert;
     color: black;
 }
@@ -91,10 +106,10 @@ button, input, select{
     justify-content: start;
     margin: auto 0;
 }
-.details *{
+.details * {
     height: 40px;
 }
-.details > div{
+.details > div {
     padding: 0 40px;
 }
 
@@ -109,32 +124,32 @@ button, input, select{
 }
 
 /** Time */
-.details .time{
+.details .time {
     display: flex;
 }
-.details .time p{
+.details .time p {
     text-align: center;
 }
-.details .time select{
+.details .time select {
     border-radius: 20px;
     padding: 3px 5px;
 }
 
-.details .twelve-hour-clock{
+.details .twelve-hour-clock {
     padding: 0;
 }
-.details .twelve-hour-clock button{
+.details .twelve-hour-clock button {
     margin: 2px;
     padding: 3px 15px;
 }
-.details .twelve-hour-clock button.selected{
-    background-color: #E6B66F;
-    color: #FFFFFF;
+.details .twelve-hour-clock button.selected {
+    background-color: var(--light-orange);
+    color: white;
     box-shadow: none !important;
 }
 
 /** File Types */
-.details .keywords, .details .extensions{
+.details .keywords, .details .extensions {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -150,9 +165,9 @@ input[type=text] {
 }
 
 /** Label Buttons */
-.details .labelBtn{
-    background-color: #425B6B;
-    color: #FFFFFF;
+.details .labelBtn {
+    background-color: var(--blue);
+    color: white;
     padding: 8px 10px;
     margin: 15px 5px 0 5px;
 }
@@ -160,12 +175,12 @@ input[type=text] {
 /** Dropdown Button */
 .dropdown {
     filter: drop-shadow( 0px 4px 4px rgb(0 0 0 / 37%));
-    color: #C27B75;
+    color: var(--pink);
     cursor: pointer;
 }
 .dropdown:hover {
     filter: none !important;
-    color: #C27B75;
+    color: var(--pink);
 }
 
 /** New Task Button */
@@ -173,7 +188,7 @@ input[type=text] {
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #C27B75;
+    background-color: var(--pink);
     padding: 10px;
     border-radius: 12px 0 0;
     color: white;
@@ -183,7 +198,7 @@ input[type=text] {
 .schedule {
     display: flex;
     flex-direction: column;
-    border-top: 4px solid #524765;
+    border-top: 4px solid var(--purple);
 }
 
 .schedule p {
